@@ -2,6 +2,7 @@
 #define SERIALIZE_HPP
 
 #include <fstream>
+#include <vector>
 
 #include "record.hpp"
 

@@ -1,5 +1,6 @@
 #include "mergesort.hpp"
 
+#include <cmath>
 #include <filesystem>
 #include <sstream>
 

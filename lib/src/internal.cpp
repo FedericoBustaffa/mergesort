@@ -1,5 +1,7 @@
 #include "mergesort.hpp"
 
+#include <cmath>
+
 void merge(std::vector<record>& v, size_t first, size_t middle, size_t last,
            std::vector<record>& support)
 {

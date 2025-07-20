@@ -2,7 +2,6 @@
 #define RECORD_HPP
 
 #include <cstdint>
-#include <random>
 
 class record
 {
@@ -41,10 +40,6 @@ private:
     uint64_t m_key;
     uint32_t m_length;
     char* m_payload;
-
-private: // static members for initialization
-    static uint64_t s_counter;
-    static std::mt19937 s_generator;
 };
 
 #endif
