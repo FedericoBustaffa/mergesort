@@ -5,7 +5,6 @@
 
 namespace fs = std::filesystem;
 
-// should build a view
 std::vector<record> load(std::ifstream& file, uint64_t limit)
 {
     std::vector<record> records;
