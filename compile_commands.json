@@ -9,29 +9,12 @@
       "-march=native",
       "-c",
       "-o",
-      "build/internal.o",
-      "src/internal.cpp"
+      "build/load.o",
+      "src/load.cpp"
     ],
     "directory": "/home/federico/dev/cpp/mergesort/lib",
-    "file": "/home/federico/dev/cpp/mergesort/lib/src/internal.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/lib/build/internal.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-Wall",
-      "-std=c++20",
-      "-I./include/",
-      "-O3",
-      "-march=native",
-      "-c",
-      "-o",
-      "build/external.o",
-      "src/external.cpp"
-    ],
-    "directory": "/home/federico/dev/cpp/mergesort/lib",
-    "file": "/home/federico/dev/cpp/mergesort/lib/src/external.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/lib/build/external.o"
+    "file": "/home/federico/dev/cpp/mergesort/lib/src/load.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/lib/build/load.o"
   },
   {
     "arguments": [
@@ -77,12 +60,12 @@
       "-march=native",
       "-c",
       "-o",
-      "build/load.o",
-      "src/load.cpp"
+      "build/utils.o",
+      "src/utils.cpp"
     ],
     "directory": "/home/federico/dev/cpp/mergesort/lib",
-    "file": "/home/federico/dev/cpp/mergesort/lib/src/load.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/lib/build/load.o"
+    "file": "/home/federico/dev/cpp/mergesort/lib/src/utils.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/lib/build/utils.o"
   },
   {
     "arguments": [
@@ -94,12 +77,29 @@
       "-march=native",
       "-c",
       "-o",
-      "build/utils.o",
-      "src/utils.cpp"
+      "build/external.o",
+      "src/external.cpp"
     ],
     "directory": "/home/federico/dev/cpp/mergesort/lib",
-    "file": "/home/federico/dev/cpp/mergesort/lib/src/utils.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/lib/build/utils.o"
+    "file": "/home/federico/dev/cpp/mergesort/lib/src/external.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/lib/build/external.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-std=c++20",
+      "-I./include/",
+      "-O3",
+      "-march=native",
+      "-c",
+      "-o",
+      "build/internal.o",
+      "src/internal.cpp"
+    ],
+    "directory": "/home/federico/dev/cpp/mergesort/lib",
+    "file": "/home/federico/dev/cpp/mergesort/lib/src/internal.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/lib/build/internal.o"
   },
   {
     "arguments": [
@@ -119,44 +119,6 @@
     "directory": "/home/federico/dev/cpp/mergesort/test",
     "file": "/home/federico/dev/cpp/mergesort/test/generation.cpp",
     "output": "/home/federico/dev/cpp/mergesort/test/generation.out"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-Wall",
-      "-std=c++20",
-      "-I../lib/include/",
-      "-I../../lib/include/",
-      "-O3",
-      "-march=native",
-      "-pthread",
-      "-o",
-      "blocks.out",
-      "blocks.cpp"
-    ],
-    "directory": "/home/federico/dev/cpp/mergesort/test",
-    "file": "/home/federico/dev/cpp/mergesort/test/blocks.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/test/blocks.out"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-Wall",
-      "-std=c++20",
-      "-I../lib/include/",
-      "-I../../lib/include/",
-      "-O3",
-      "-march=native",
-      "-pthread",
-      "-o",
-      "merge_blocks.out",
-      "merge_blocks.cpp"
-    ],
-    "directory": "/home/federico/dev/cpp/mergesort/test",
-    "file": "/home/federico/dev/cpp/mergesort/test/merge_blocks.cpp",
-    "output": "/home/federico/dev/cpp/mergesort/test/merge_blocks.out"
   },
   {
     "arguments": [
@@ -195,6 +157,44 @@
     "directory": "/home/federico/dev/cpp/mergesort/test",
     "file": "/home/federico/dev/cpp/mergesort/test/partial_read.cpp",
     "output": "/home/federico/dev/cpp/mergesort/test/partial_read.out"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-Wall",
+      "-std=c++20",
+      "-I../lib/include/",
+      "-I../../lib/include/",
+      "-O3",
+      "-march=native",
+      "-pthread",
+      "-o",
+      "blocks.out",
+      "blocks.cpp"
+    ],
+    "directory": "/home/federico/dev/cpp/mergesort/test",
+    "file": "/home/federico/dev/cpp/mergesort/test/blocks.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/test/blocks.out"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-Wall",
+      "-std=c++20",
+      "-I../lib/include/",
+      "-I../../lib/include/",
+      "-O3",
+      "-march=native",
+      "-pthread",
+      "-o",
+      "merge_blocks.out",
+      "merge_blocks.cpp"
+    ],
+    "directory": "/home/federico/dev/cpp/mergesort/test",
+    "file": "/home/federico/dev/cpp/mergesort/test/merge_blocks.cpp",
+    "output": "/home/federico/dev/cpp/mergesort/test/merge_blocks.out"
   },
   {
     "arguments": [
