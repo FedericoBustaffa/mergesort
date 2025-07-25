@@ -21,10 +21,16 @@ public:
     inline size_t size() const { return m_keys.size(); }
 
     inline std::vector<uint64_t>& keys() { return m_keys; }
+    inline const std::vector<uint64_t>& keys() const { return m_keys; }
 
     inline std::vector<uint32_t>& lengths() { return m_lengths; }
+    inline const std::vector<uint32_t>& lengths() const { return m_lengths; }
 
     inline std::vector<const char*>& payloads() { return m_payloads; }
+    inline const std::vector<const char*>& payloads() const
+    {
+        return m_payloads;
+    }
 
     ~buffer() {}
 
