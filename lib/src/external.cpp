@@ -96,25 +96,28 @@ void mergesort(const char* filepath, uint64_t limit)
 {
     // blocks sorting
     std::ifstream file(filepath, std::ios::binary);
-    std::vector<record> block = load_vector(file, limit / 2);
+    buffer block = load_buffer(file, limit / 2);
 
     std::stringstream ss;
     size_t block_counter = 0;
-    while (!block.empty())
+    while (block.size() > 0)
     {
+        std::printf("block size: %lu\n", block.size());
+
         // sort the block
         mergesort(block);
+        std::printf("block size: %lu\n", block.size());
 
         // save the sorted block to a file
         ss << "block_" << block_counter++ << ".bin";
-        dump_vector(block, ss.str().c_str());
+        dump_buffer(block, ss.str().c_str());
 
         // reset the stringstream
         ss.str("");
         ss.clear();
 
         // read the next block
-        block = load_vector(file, limit / 2);
+        block = load_buffer(file, limit / 2);
     }
 
     // blocks merging

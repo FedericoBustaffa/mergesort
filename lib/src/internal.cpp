@@ -22,29 +22,29 @@ void merge(std::vector<uint64_t>& keys, size_t first, size_t middle,
             support[i] = keys[right];
             indices[i++] = right++;
         }
-
-        // consume remaining array
-        if (left >= middle)
-        {
-            while (right < last)
-            {
-                support[i] = keys[right];
-                indices[i++] = right++;
-            }
-        }
-        else
-        {
-            while (left < middle)
-            {
-                support[i] = keys[left];
-                indices[i++] = left++;
-            }
-        }
-
-        // copy the support array in the original
-        for (size_t i = first; i < last; i++)
-            keys[i] = support[i];
     }
+
+    // consume remaining array
+    if (left >= middle)
+    {
+        while (right < last)
+        {
+            support[i] = keys[right];
+            indices[i++] = right++;
+        }
+    }
+    else
+    {
+        while (left < middle)
+        {
+            support[i] = keys[left];
+            indices[i++] = left++;
+        }
+    }
+
+    // copy the support array in the original
+    for (size_t i = first; i < last; i++)
+        keys[i] = support[i];
 }
 
 void sort(std::vector<uint64_t> keys, size_t first, size_t last,
