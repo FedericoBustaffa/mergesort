@@ -1,5 +1,7 @@
 #include "serialize.hpp"
 
+#include "buffer.hpp"
+
 record load_record(std::ifstream& file)
 {
     uint64_t key;
@@ -63,4 +65,36 @@ std::vector<record> load_vector(const char* filepath, uint64_t limit)
 {
     std::ifstream file(filepath, std::ios::binary);
     return load_vector(file, limit);
+}
+
+buffer load_buffer(std::ifstream& file, uint64_t limit)
+{
+    buffer records;
+    record temp;
+    uint64_t index = 0;
+    while (true)
+    {
+        if (limit > 0 && limit - index < 20)
+            return records;
+
+        temp = load_record(file);
+        if (!temp.is_valid())
+            break;
+
+        index += temp.size();
+        if (limit > 0 && index > limit)
+        {
+            file.seekg(-temp.size(), std::ios::cur);
+            return records;
+        }
+        records.add(std::move(temp));
+    }
+
+    return records;
+}
+
+buffer load_buffer(const char* filepath, uint64_t limit)
+{
+    std::ifstream file(filepath, std::ios::binary);
+    return load_buffer(file, limit);
 }
