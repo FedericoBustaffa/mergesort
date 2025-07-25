@@ -31,8 +31,8 @@ int main(int argc, const char** argv)
     mergesort(blk2);
 
     // save sorted records to a file
-    dump(blk1, "blk1.bin");
-    dump(blk2, "blk2.bin");
+    dump_vector(blk1, "blk1.bin");
+    dump_vector(blk2, "blk2.bin");
 
     // merge the 2 blocks and create the array for comparison
     std::vector<record> correct(blk1.size() + blk2.size());
@@ -41,7 +41,7 @@ int main(int argc, const char** argv)
 
     // merge 2 blocks with implemented function
     merge("blk1.bin", "blk2.bin", limit);
-    std::vector<record> result = load("blk1.bin");
+    std::vector<record> result = load_vector("blk1.bin");
 
     // checks
     assert(std::is_sorted(correct.begin(), correct.end()));

@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdio>
-#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -32,12 +31,12 @@ int main(int argc, const char** argv)
 
     // serialize the array in a file
     std::ofstream out("records.dat", std::ios::binary);
-    dump(a, out);
+    dump_vector(a, out);
     out.close();
 
     // deserialize
     std::ifstream in("records.dat", std::ios::binary);
-    std::vector<record> b = load(in, 10000000);
+    std::vector<record> b = load_vector(in, 10000000);
     in.close();
 
     // compare the two to see if the serialization is correct

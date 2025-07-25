@@ -1,7 +1,6 @@
 #include "utils.hpp"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <random>
 #include <regex>
@@ -24,7 +23,6 @@ std::vector<record> generate_records(uint64_t n, uint64_t max_payload)
     for (uint64_t i = 0; i < n; i++)
     {
         length = length_dist(generator);
-        // length = max_payload; // TODO: only for debugging -> should be random
         payload = new char[length];
         for (uint32_t i = 0; i < length; i++)
             payload[i] = payload_dist(generator);
@@ -81,4 +79,35 @@ uint64_t parse_mem_limit(const char* limit)
     // std::printf("%s = %lu bytes\n", limit, bytes);
 
     return bytes;
+}
+
+std::string bytes_to_string(uint64_t bytes)
+{
+    uint16_t magnitude = 0;
+    while (bytes > 1024)
+    {
+        bytes = bytes / 1024;
+        magnitude++;
+    }
+
+    std::stringstream ss;
+    ss << bytes;
+
+    switch (magnitude)
+    {
+    case 0:
+        ss << "B";
+        return ss.str();
+    case 1:
+        ss << "KB";
+        return ss.str();
+    case 2:
+        ss << "MB";
+        return ss.str();
+    case 3:
+        ss << "GB";
+        return ss.str();
+    default:
+        return "";
+    }
 }

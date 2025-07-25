@@ -25,7 +25,7 @@ int main(int argc, const char** argv)
     std::printf("total bytes produced: %lu\n", bytes);
 
     std::ofstream out("records.dat", std::ios::binary);
-    dump(records, out);
+    dump_vector(records, out);
     out.close();
 
     // partial reading with limits
@@ -34,7 +34,7 @@ int main(int argc, const char** argv)
     std::ifstream in("records.dat", std::ios::binary);
     while (!in.eof())
     {
-        temp = load(in, limit);
+        temp = load_vector(in, limit);
         if (records.size() == 0)
             break;
 

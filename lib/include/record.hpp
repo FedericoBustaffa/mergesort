@@ -1,6 +1,7 @@
 #ifndef RECORD_HPP
 #define RECORD_HPP
 
+#include <cstddef>
 #include <cstdint>
 
 class record
@@ -20,9 +21,15 @@ public:
 
     inline const char* payload() const { return m_payload; }
 
-    inline bool is_valid() const { return m_length > 0; }
+    inline size_t size() const
+    {
+        return sizeof(uint64_t) + sizeof(uint32_t) + m_length;
+    }
 
-    inline const char& operator[](uint32_t i) const { return m_payload[i]; }
+    inline bool is_valid() const
+    {
+        return m_length > 0 && m_payload != nullptr;
+    }
 
     record& operator=(const record& other);
 
