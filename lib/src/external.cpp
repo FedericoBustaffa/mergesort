@@ -94,19 +94,22 @@ void merge(const char* filepath1, const char* filepath2, uint64_t limit)
 
 void mergesort(const char* filepath, uint64_t limit)
 {
+    // blocks sorting
     std::ifstream file(filepath, std::ios::binary);
-    std::stringstream ss;
-
     std::vector<record> block = load_vector(file, limit / 2);
+
+    std::stringstream ss;
     size_t block_counter = 0;
     while (!block.empty())
     {
-        // sort
+        // sort the block
         mergesort(block);
 
         // save the sorted block to a file
         ss << "block_" << block_counter++ << ".bin";
         dump_vector(block, ss.str().c_str());
+
+        // reset the stringstream
         ss.str("");
         ss.clear();
 
@@ -114,10 +117,10 @@ void mergesort(const char* filepath, uint64_t limit)
         block = load_vector(file, limit / 2);
     }
 
+    // blocks merging
     std::string filepath1, filepath2;
     for (size_t i = 0; i < std::ceil(std::log2(block_counter)); i++)
     {
-        // std::printf("- - - - - level %lu - - - - -\n", i);
         for (size_t j = 0; j < block_counter; j += 2 * std::pow(2, i))
         {
             // compute second file index
@@ -133,9 +136,6 @@ void mergesort(const char* filepath, uint64_t limit)
                 filepath2 = ss.str();
                 ss.str("");
                 ss.clear();
-
-                // std::printf("merge %s with %s\n", filepath1.c_str(),
-                //             filepath2.c_str());
 
                 merge(filepath1.c_str(), filepath2.c_str(), limit);
             }

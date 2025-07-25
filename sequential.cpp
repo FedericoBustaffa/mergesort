@@ -44,8 +44,8 @@ int main(int argc, const char** argv)
     assert(!std::is_sorted(records.begin(), records.end()));
     assert(std::is_sorted(result.begin(), result.end()));
 
-    std::printf("file size: %s\n",
-                bytes_to_string(fs::file_size("vector.bin")).c_str());
+    uint64_t filesize = fs::file_size("vector.bin");
+    std::printf("file size: %s\n", bytes_to_string(filesize).c_str());
     std::printf("elements: %lu\n", n);
     std::printf("limit: %s\n", argv[2]);
     std::printf("time: %.4f seconds\n", duration.count());
