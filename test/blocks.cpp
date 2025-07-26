@@ -24,7 +24,7 @@ int main(int argc, const char** argv)
     // generate records
     std::vector<record> records = generate_records(n, 64);
     uint64_t bytes = mem_usage(records);
-    std::printf("total bytes produced: %lu\n", bytes);
+    // std::printf("total bytes produced: %lu\n", bytes);
 
     // save unsorted records to a file
     std::ofstream out("records.bin", std::ios::binary | std::ios::trunc);
@@ -54,9 +54,10 @@ int main(int argc, const char** argv)
         assert(b <= limit);
 
         temp = load_vector(in, limit);
+        fs::remove(ss.str());
     }
     in.close();
-    std::printf("total bytes read: %lu\n", bytes);
+    // std::printf("total bytes read: %lu\n", bytes);
 
     fs::remove("records.bin");
 

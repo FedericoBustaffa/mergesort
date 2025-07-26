@@ -2,7 +2,7 @@
 CXX = g++
 
 # general flags
-CXXFLAGS = -Wall -std=c++20
+CXXFLAGS = -Wall -std=c++20 -fopenmp
 
 # flags for debug compilation - enabled if run "make -DBUILD_TYPE=DEBUG"
 DBGFLAGS = -g
@@ -36,7 +36,7 @@ else
 endif
 
 # link libraries
-LIBS =
+LIBS = -fopenmp
 
 # specify source directory
 SOURCE_DIR = ./src

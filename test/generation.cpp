@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdio>
-#include <cstring>
 #include <string>
 #include <vector>
 
@@ -19,13 +18,10 @@ int main(int argc, const char** argv)
 
     // generate shuffled records
     std::vector<record> records = generate_records(n, 64);
-    for (const auto& r : records)
-    {
-        // assert(r.length() == std::strlen(r.payload()));
-        std::printf("key: %lu - length: %u\n", r.key(), r.length());
-    }
+    // for (const auto& r : records)
+    //     std::printf("key: %lu - length: %u\n", r.key(), r.length());
 
-    // check if sorted
+    // check if sorted (shouldn't be)
     assert(!std::is_sorted(
         records.begin(), records.end(),
         [](const record& a, const record& b) { return a.key() < b.key(); }));

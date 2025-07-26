@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <cassert>
 #include <chrono>
 #include <cstdio>
@@ -28,27 +27,19 @@ int main(int argc, const char** argv)
     // generate and save shuffled vector
     std::vector<record> records = generate_records(n, 256);
     dump_vector(records, "vector.bin");
+    records.clear();
 
     // sort and generate a file with sorted array
     auto start = std::chrono::high_resolution_clock::now();
     mergesort("vector.bin", limit);
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = end - start;
-
-    // check if the array is sorted correctly
-    std::vector<record> result = load_vector("vector.bin");
-
-    assert(result.size() == records.size());
-    assert(!std::equal(records.begin(), records.end(), result.begin(),
-                       result.end()));
-    assert(!std::is_sorted(records.begin(), records.end()));
-    assert(std::is_sorted(result.begin(), result.end()));
+    std::chrono::duration<double> elapsed = end - start;
 
     uint64_t filesize = fs::file_size("vector.bin");
     std::printf("file size: %s\n", bytes_to_string(filesize).c_str());
     std::printf("elements: %lu\n", n);
     std::printf("limit: %s\n", argv[2]);
-    std::printf("time: %.4f seconds\n", duration.count());
+    std::printf("time: %.4f seconds\n", elapsed.count());
 
     return 0;
 }
