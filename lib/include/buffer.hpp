@@ -20,6 +20,8 @@ public:
 
     inline size_t size() const { return m_keys.size(); }
 
+    inline bool empty() const { return m_keys.empty(); }
+
     inline std::vector<uint64_t>& keys() { return m_keys; }
     inline const std::vector<uint64_t>& keys() const { return m_keys; }
 
@@ -31,6 +33,8 @@ public:
     {
         return m_payloads;
     }
+
+    inline const uint64_t& operator[](size_t i) const { return m_keys[i]; }
 
     ~buffer() {}
 
