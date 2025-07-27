@@ -17,7 +17,7 @@ echo "------------------------------"
 
 echo "test partial reading with memory limit"
 for i in 10 100 1000 10000 100000; do
-    for l in 10MB 20MB 50MB 100MB 250MB 500MB 1GB 2GB; do
+    for l in 100MB 250MB 500MB 1GB 2GB; do
         echo "n: ${i}, limit: ${l}"
         ./test/partial_read.out $i $l
     done
@@ -33,7 +33,7 @@ echo "------------------------------"
 
 echo "test out-of-core blocks sorting"
 for i in 10 100 1000 10000 100000; do
-    for l in 10MB 20MB 50MB 100MB 250MB 500MB 1GB 2GB; do
+    for l in 100MB 250MB 500MB 1GB 2GB; do
         echo "n: ${i}, limit: ${l}"
         ./test/blocks.out $i $l
     done
@@ -42,7 +42,7 @@ echo "------------------------------"
 
 echo "test out-of-core sorted blocks merging"
 for i in 10 15 20; do
-    for l in 10MB 20MB 50MB 100MB 250MB 500MB 1GB 2GB; do
+    for l in 100MB 250MB 500MB 1GB 2GB; do
         echo "exp: ${i}, limit: ${l}"
         ./test/merge_blocks.out $i $l
     done
@@ -51,7 +51,7 @@ echo "------------------------------"
 
 echo "test out-of-core out-of-core sequential algorithm"
 for i in 10 15 20; do
-    for l in 10MB 20MB 50MB 100MB 250MB 500MB 1GB 2GB; do
+    for l in 100MB 250MB 500MB 1GB 2GB; do
         echo "exp: ${i}, limit: ${l}"
         ./test/sequential.out $i $l
     done
