@@ -8,8 +8,6 @@
 // --- internal.cpp ---
 void mergesort(std::vector<record>& v);
 
-void omp_mergesort(std::vector<record>& v);
-
 // --- external.cpp ---
 void mergesort(const char* filepath, uint64_t limit);
 
