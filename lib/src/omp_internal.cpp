@@ -38,13 +38,23 @@ void sort(std::vector<record>& v, size_t first, size_t last,
         return;
 
     size_t middle = std::ceil((first + last) / 2);
+
+#pragma omp task shared(v, support)
     sort(v, first, middle, support);
+
+#pragma omp task shared(v, support)
     sort(v, middle, last, support);
+
+#pragma omp taskwait
     merge(v, first, middle, last, support);
 }
 
-void mergesort(std::vector<record>& v)
+void omp_mergesort(std::vector<record>& v)
 {
     std::vector<record> support(v.size());
-    sort(v, 0, v.size(), support);
+#pragma omp parallel
+    {
+#pragma omp single
+        sort(v, 0, v.size(), support);
+    }
 }

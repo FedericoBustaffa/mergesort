@@ -2,7 +2,7 @@
 CXX = g++
 
 # general flags
-CXXFLAGS = -Wall -std=c++20
+CXXFLAGS = -Wall -std=c++20 -fopenmp
 
 # flags for debug compilation - enabled if run "make -DBUILD_TYPE=DEBUG"
 DBGFLAGS = -g
@@ -32,7 +32,7 @@ else
 endif
 
 # link libraries
-LIBS = -pthread -L../lib/build/ -lmergesort
+LIBS = -pthread -L../lib/build/ -lmergesort -fopenmp
 
 .PHONY: all clean recompile
 

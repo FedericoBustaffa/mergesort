@@ -29,7 +29,7 @@ int main(int argc, const char** argv)
     dump_vector(records, "vector.bin");
 
     // sort and generate a file with sorted array
-    mergesort("vector.bin", limit);
+    omp_mergesort("vector.bin", limit);
 
     // check if the array is sorted correctly
     std::vector<record> result = load_vector("vector.bin");
