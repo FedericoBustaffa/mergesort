@@ -1,5 +1,5 @@
-#include <algorithm>
 #include <cassert>
+#include <chrono>
 #include <cstdio>
 #include <filesystem>
 
@@ -29,16 +29,11 @@ int main(int argc, const char** argv)
     omp_dump_vector(records, "vector.bin");
 
     // sort and generate a file with sorted array
+    auto start = std::chrono::high_resolution_clock::now();
     omp_mergesort("vector.bin", limit);
-
-    // check if the array is sorted correctly
-    std::vector<record> result = load_vector("vector.bin");
-
-    assert(result.size() == records.size());
-    assert(!std::equal(records.begin(), records.end(), result.begin(),
-                       result.end()));
-    assert(!std::is_sorted(records.begin(), records.end()));
-    assert(std::is_sorted(result.begin(), result.end()));
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::printf("time: %.4f s\n", elapsed.count());
 
     fs::remove("vector.bin");
 

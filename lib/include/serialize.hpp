@@ -13,6 +13,11 @@ void dump_vector(const std::vector<record>& records, std::ofstream& file);
 
 void dump_vector(const std::vector<record>& records, const char* filepath);
 
+// --- omp_dump.cpp ---
+void omp_dump_record(const record& record, size_t offset, std::ofstream& file);
+
+void omp_dump_vector(const std::vector<record>& records, const char* filepath);
+
 // --- load.cpp ---
 record load_record(std::ifstream& file);
 

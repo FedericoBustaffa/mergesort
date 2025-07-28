@@ -12,7 +12,6 @@ void merge(const char* filepath1, const char* filepath2, uint64_t limit)
 {
     std::ifstream in1(filepath1, std::ios::binary);
     std::ifstream in2(filepath2, std::ios::binary);
-    std::ofstream out("merged.bin", std::ios::binary | std::ios::app);
 
     std::vector<record> blk1 = load_vector(in1, limit / 4);
     std::vector<record> blk2 = load_vector(in2, limit / 4);
@@ -48,7 +47,7 @@ void merge(const char* filepath1, const char* filepath2, uint64_t limit)
 
         if (bufsize >= limit / 2)
         {
-            dump_vector(buffer, out);
+            omp_dump_vector(buffer, "merged.bin");
             buffer.clear();
             bufsize = 0;
         }
@@ -76,16 +75,15 @@ void merge(const char* filepath1, const char* filepath2, uint64_t limit)
         }
         else
         {
-            dump_vector(buffer, out);
+            omp_dump_vector(buffer, "merged.bin");
             buffer.clear();
             bufsize = 0;
         }
     }
 
-    dump_vector(buffer, out);
+    omp_dump_vector(buffer, "merged.bin");
     in1.close();
     in2.close();
-    out.close();
 
     fs::remove(filepath1);
     fs::remove(filepath2);
@@ -107,7 +105,7 @@ void omp_mergesort(const char* filepath, uint64_t limit)
 
         // save the sorted block to a file
         ss << "block_" << block_counter++ << ".bin";
-        dump_vector(block, ss.str().c_str());
+        omp_dump_vector(block, ss.str().c_str());
 
         // reset the stringstream
         ss.str("");
