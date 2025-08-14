@@ -16,8 +16,8 @@ int main(int argc, const char** argv)
         std::printf("USAGE: %s <N> <L>\n", argv[0]);
         return 1;
     }
-    uint64_t n = std::stoull(argv[1]);         // # of records
-    uint64_t limit = parse_mem_limit(argv[2]); // max bytes
+    uint64_t n = std::stoull(argv[1]);      // # of records
+    uint64_t limit = parse_memory(argv[2]); // max bytes
 
     // generate and save records to a file
     std::vector<record> records = generate_records(n, 64);
