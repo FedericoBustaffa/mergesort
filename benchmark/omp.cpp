@@ -17,7 +17,7 @@ int main(int argc, const char** argv)
         return 1;
     }
     uint64_t n = 1ULL << std::stoul(argv[1]);
-    uint64_t limit = parse_mem_limit(argv[2]);
+    uint64_t limit = parse_memory(argv[2]);
     if (limit == 0)
     {
         std::printf("USAGE: %s <E> <L>[K|M|G]B\n", argv[0]);
