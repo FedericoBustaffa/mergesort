@@ -15,7 +15,7 @@ int main(int argc, const char** argv)
         std::printf("USAGE: %s <mem>\n", argv[0]);
         return 1;
     }
-    uint64_t memory = parse_mem_limit(argv[1]);
+    uint64_t memory = parse_memory(argv[1]);
 
     char* buffer = new char[memory];
     std::mt19937 generator(42);

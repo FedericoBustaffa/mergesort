@@ -44,7 +44,7 @@ uint64_t mem_usage(const std::vector<record>& v)
     return bytes;
 }
 
-uint64_t parse_mem_limit(const char* limit)
+uint64_t parse_memory(const char* limit)
 {
     std::string input = std::move(limit);
     std::regex int_pattern(R"(^([1-9][0-9]*)(B|KB|MB|GB)$)");
@@ -84,7 +84,7 @@ uint64_t parse_mem_limit(const char* limit)
 std::string bytes_to_string(uint64_t bytes)
 {
     uint16_t magnitude = 0;
-    while (bytes > 1024)
+    while (bytes >= 1024)
     {
         bytes = bytes / 1024;
         magnitude++;
