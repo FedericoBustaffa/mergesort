@@ -82,5 +82,11 @@ int main(int argc, const char** argv)
 
     delete[] buffer;
 
+    std::ofstream results("results/read_write.csv", std::ios::app);
+    results << bufsize << ",";
+    results << chunksize << ",";
+    results << wtime << ",";
+    results << rtime << std::endl;
+
     return 0;
 }
